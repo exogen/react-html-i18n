@@ -1,3 +1,3 @@
 module.exports = {
-  assetPrefix: ".",
+  assetPrefix: "/react-html-i18n",
 };
