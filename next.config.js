@@ -1,3 +1,4 @@
 module.exports = {
-  assetPrefix: "/react-html-i18n",
+  assetPrefix:
+    process.env.NODE_ENV === "production" ? "/react-html-i18n" : undefined,
 };
