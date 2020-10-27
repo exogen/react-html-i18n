@@ -117,6 +117,14 @@ export default function DemoPage() {
 
         .EditArea {
           display: flex;
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        @media (min-width: 1200px) {
+          .EditArea {
+            flex-direction: row;
+          }
         }
 
         .LiveEditor {
