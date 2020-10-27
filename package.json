@@ -22,6 +22,7 @@
     "prepare": "npm run build",
     "size": "bundlesize",
     "start": "next dev",
+    "pretest": "npm run build",
     "test": "jest"
   },
   "bundlesize": [
