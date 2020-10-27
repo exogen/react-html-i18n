@@ -146,8 +146,8 @@ export default function DemoPage() {
             </p>
           }
           code={`<Message
-  string="<h1>{title}</h1>"
   values={{ title: "It worked! Try editing this code." }}
+  string="<h1>{title}</h1>"
 />`}
         />
         <Example
@@ -157,13 +157,24 @@ export default function DemoPage() {
             </p>
           }
           code={`<Message
-  string="Like this: {button} …or how about another? {button}"
   values={{ button: <CounterButton /> }}
+  string="Like this: {button} …or how about another? {button}"
 />`}
         />
         <Example
           intro={<p>Tag replacement? You got it.</p>}
           code={`<Message
+  values={{
+    // Customize how tags are rendered:
+    hr: () => <hr className="rule" />,
+    // Attributes and children become props:
+    a: (props) => <FancyLink rel="noopener" {...props} />,
+    // Define custom tags:
+    important: ({ children }) =>
+      <h2 className="important">👉 {children} 👈</h2>,
+    // Substitution works in any part of the HTML string:
+    url: "https://bailproject.org/",
+  }}
   string={\`
     <important>Read this!</important>
 
@@ -175,17 +186,6 @@ export default function DemoPage() {
 
     How about a <a href="{url}">dynamic link</a>?
   \`}
-  values={{
-    // Define custom tag names:
-    important: ({ children }) =>
-      <h2 className="important">👉 {children} 👈</h2>,
-    // Customize how tags are rendered:
-    hr: () => <hr className="rule" />,
-    // Attributes and children become props:
-    a: (props) => <FancyLink rel="noopener" {...props} />,
-    // Substitution works in any part of the HTML string:
-    url: "https://bailproject.org/"
-  }}
 />`}
         />
         <Example
@@ -199,6 +199,13 @@ export default function DemoPage() {
             </p>
           }
           code={`<Message
+  // Try changing these values.
+  values={{
+    host: "Alex",
+    guest: "Sam",
+    gender_of_host: "other",
+    num_guests: 2,
+  }}
   string={\` 
     {gender_of_host, select, 
       female {
@@ -227,12 +234,6 @@ export default function DemoPage() {
       }
     }
   \`}
-  values={{
-    host: "Alex",
-    guest: "Sam",
-    gender_of_host: "other",
-    num_guests: 2,
-  }}
 />`}
         />
       </MessageProvider>
