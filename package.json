@@ -14,7 +14,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "rollup -c rollup.config.js",
-    "build:docs": "rimraf .next docs && next build && next export -o docs",
+    "build:docs": "rimraf .next docs && next build && next export -o docs && touch docs/.nojekyll",
     "format": "prettier --write \"**/*.{js,json}\"",
     "perf": "yarn perf:lib && yarn perf:lib intl-messageformat-parser && yarn perf:lib messageformat-parser && yarn perf:lib format-message-parse && yarn perf:lib @ffz/icu-msgparser",
     "perf:lib": "node scripts/perf.js",
