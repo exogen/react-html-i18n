@@ -65,3 +65,6 @@ typings/
 
 # Rollup builds
 dist
+
+# Demo build output
+docs
