@@ -169,8 +169,7 @@ export default function DemoPage() {
 
     <hr>
 
-    Perhaps my <a href="https://github.com/exogen">other projects</a> would be
-    of interest?
+    Perhaps my <a href="https://github.com/exogen">other projects</a> would be of interest?
 
     <hr>
 
