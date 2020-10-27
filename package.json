@@ -1,8 +1,10 @@
 {
   "name": "react-html-i18n",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "browser": {
