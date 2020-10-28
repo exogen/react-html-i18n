@@ -1,6 +1,6 @@
 {
   "name": "react-html-i18n",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "files": [
     "dist"
@@ -30,7 +30,7 @@
     {
       "path": "dist/index.browser.esm.min.js",
       "compression": "none",
-      "maxSize": "8 kB"
+      "maxSize": "9 kB"
     },
     {
       "path": "dist/index.browser.esm.min.js",
@@ -39,7 +39,7 @@
     {
       "path": "dist/index.browser.cjs.min.js",
       "compression": "none",
-      "maxSize": "8 kB"
+      "maxSize": "9 kB"
     },
     {
       "path": "dist/index.browser.cjs.min.js",
@@ -51,7 +51,7 @@
     "react-dom": "^16.8.0 || ^17.0.0"
   },
   "dependencies": {
-    "html-dom-parser": "^0.3.0",
+    "parse5": "^6.0.1",
     "quick-lru": "^5.1.1",
     "style-to-object": "^0.3.0"
   },

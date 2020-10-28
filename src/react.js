@@ -1,6 +1,7 @@
 import React from "react";
 import { attrsToProps } from "./attrsToProps";
-import { htmlToDom, domToReact } from "./domToReact";
+import { htmlToDom, adaptNodes } from "./htmlToDom";
+import { domToReact } from "./domToReact";
 
 const escapeChars = {
   '"': "&#34;",
@@ -73,8 +74,8 @@ export function htmlToReact(html, placeholders, tagHandlers) {
   const options = {
     replace(node) {
       if (node.type === "tag") {
-        if (node.attribs) {
-          const key = node.attribs["data-react-placeholder-key"];
+        if (node.attrs) {
+          const key = node.attrs["data-react-placeholder-key"];
           if (key) {
             return placeholders[key];
           }
@@ -82,7 +83,7 @@ export function htmlToReact(html, placeholders, tagHandlers) {
         const tagName = node.name;
         const tagHandler = tagHandlers && tagHandlers[tagName];
         if (typeof tagHandler === "function") {
-          const props = attrsToProps(node.attribs);
+          const props = attrsToProps(node.attrs);
           if (node.children.length) {
             props.children = domToReact(node.children, options);
           }

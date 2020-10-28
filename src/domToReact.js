@@ -1,15 +1,5 @@
 import React from "react";
-import htmlDomParser from "html-dom-parser";
 import { attrsToProps } from "./attrsToProps";
-
-const domParserOptions = {
-  decodeEntities: true,
-  lowerCaseAttributeNames: false,
-};
-
-export function htmlToDom(html, options = domParserOptions) {
-  return htmlDomParser(html, options);
-}
 
 const validTagName = /^[0-9a-z-]+$/i;
 const defaultOptions = {};
@@ -25,39 +15,34 @@ export function domToReact(dom, options = defaultOptions) {
         case "text":
           nodes.push(node.data);
           return;
-        case "style":
         case "tag": {
+          let { name, attrs, children } = node;
           const props = { key: i };
-          let { name, attribs, children: childNodes } = node;
           switch (name) {
             case "style":
-              if (childNodes[0]) {
+              if (children[0]) {
                 props.dangerouslySetInnerHTML = {
-                  __html: childNodes[0].data,
+                  __html: children[0].data,
                 };
-                childNodes = undefined;
+                children = [];
               }
               break;
             case "textarea":
-              if (childNodes[0]) {
-                props.defaultValue = childNodes[0].data;
-                childNodes = undefined;
-              }
-              break;
-            default:
-              if (!validTagName.test(name)) {
-                return;
+              if (children[0]) {
+                props.defaultValue = children[0].data;
+                children = [];
               }
           }
-          if (attribs) {
-            Object.assign(props, attrsToProps(attribs));
+          if (attrs) {
+            Object.assign(props, attrsToProps(attrs));
           }
-          const children = childNodes && domToReact(childNodes, options);
-          nodes.push(createElement(name, props, children));
+          const reactChildren = domToReact(children, options);
+          nodes.push(createElement(name, props, reactChildren));
         }
       }
     } else if (isValidElement(replacement)) {
-      nodes.push(cloneElement(replacement, { key: i }));
+      const key = replacement.key == null ? i : replacement.key;
+      nodes.push(cloneElement(replacement, { key }));
     } else {
       nodes.push(replacement);
     }
