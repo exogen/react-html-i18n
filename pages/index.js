@@ -37,133 +37,31 @@ function Example({ code, intro }) {
 
 export default function DemoPage() {
   return (
-    <>
-      <style jsx global>{`
-        html {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-          font-size: 100%;
+    <MessageProvider>
+      <Example
+        intro={
+          <p>
+            Neat, it’s ICU Message Format with full HTML and React element
+            support.
+          </p>
         }
-
-        *,
-        *:before,
-        *:after {
-          box-sizing: inherit;
-        }
-
-        body {
-          margin: 0;
-          padding: 1rem;
-          font-family: Lato, Helvetica, sans-serif;
-          line-height: 1.5;
-          background: #e6e2da;
-          color: #222;
-        }
-
-        h1 {
-          margin: 0 0 0.5rem 0;
-          font-size: 1.5rem;
-        }
-
-        h2 {
-          margin: 0 0 0.5rem 0;
-          font-size: 1.25rem;
-        }
-
-        pre,
-        code,
-        tt {
-          font-family: "Dank Mono", Menlo, Monaco, Consolas, monospace;
-        }
-
-        .rule {
-          margin: 1rem 0;
-          border: 0;
-          border-top: 2px solid #1671f0;
-        }
-
-        .fancy-link {
-          padding: 0.2rem 0.4rem;
-          border-radius: 2px;
-          text-decoration: none;
-          background: #157ce8;
-          color: #fff;
-          box-shadow: 0 3px 0 #03407e;
-          text-shadow: 0 -1px 0 #03407e;
-        }
-
-        .important {
-          text-transform: uppercase;
-          color: red;
-        }
-
-        .Intro {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          max-width: 50rem;
-          margin: 0 auto;
-          padding: 0 2rem;
-        }
-
-        .Intro code {
-          border-radius: 2px;
-          padding: 0.1em 0.2em;
-          font-size: 0.9em;
-          background: rgba(0, 0, 0, 0.08);
-          color: #000;
-        }
-
-        .EditArea {
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-        }
-
-        @media (min-width: 1200px) {
-          .EditArea {
-            flex-direction: row;
-          }
-        }
-
-        .LiveEditor {
-          flex: 0 0 50%;
-        }
-
-        .LivePreview {
-          flex: 0 0 50%;
-          padding: 1rem;
-          background: rgba(255, 255, 255, 0.5);
-        }
-      `}</style>
-      <MessageProvider>
-        <Example
-          intro={
-            <p>
-              Neat, it’s ICU Message Format with full HTML and React element
-              support.
-            </p>
-          }
-          code={`<Message
+        code={`<Message
   values={{ title: "It worked! Try editing this code." }}
   string="<h1>{title}</h1>"
 />`}
-        />
-        <Example
-          intro={
-            <p>
-              Values can be React elements, even interactive ones with state!
-            </p>
-          }
-          code={`<Message
+      />
+      <Example
+        intro={
+          <p>Values can be React elements, even interactive ones with state!</p>
+        }
+        code={`<Message
   values={{ button: <CounterButton /> }}
   string="Like this: {button} …or how about another? {button}"
 />`}
-        />
-        <Example
-          intro={<p>Tag replacement? You got it.</p>}
-          code={`<Message
+      />
+      <Example
+        intro={<p>Tag replacement? You got it.</p>}
+        code={`<Message
   values={{
     // Customize how tags are rendered:
     hr: () => <hr className="rule" />,
@@ -187,18 +85,18 @@ export default function DemoPage() {
     How about a <a href="{url}">dynamic link</a>?
   \`}
 />`}
-        />
-        <Example
-          intro={
-            <p>
-              Here’s an example of a complex message from the ICU docs. You can
-              define completely custom formatters, or import the built-ins
-              defined by the ICU Message Format spec, like: <code>date</code>,{" "}
-              <code>time</code>, <code>number</code>, <code>select</code>,{" "}
-              <code>plural</code>, and <code>selectordinal</code>.
-            </p>
-          }
-          code={`<Message
+      />
+      <Example
+        intro={
+          <p>
+            Here’s an example of a complex message from the ICU docs. You can
+            define completely custom formatters, or import the built-ins defined
+            by the ICU Message Format spec, like: <code>date</code>,{" "}
+            <code>time</code>, <code>number</code>, <code>select</code>,{" "}
+            <code>plural</code>, and <code>selectordinal</code>.
+          </p>
+        }
+        code={`<Message
   // Try changing these values.
   values={{
     host: "Alex",
@@ -235,8 +133,7 @@ export default function DemoPage() {
     }
   \`}
 />`}
-        />
-      </MessageProvider>
-    </>
+      />
+    </MessageProvider>
   );
 }

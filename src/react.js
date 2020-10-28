@@ -1,8 +1,6 @@
 import React from "react";
-import htmlReactParser, {
-  domToReact,
-  attributesToProps,
-} from "html-react-parser";
+import { attrsToProps } from "./attrsToProps";
+import { htmlToDom, domToReact } from "./domToReact";
 
 const escapeChars = {
   '"': "&#34;",
@@ -26,27 +24,8 @@ function escape(value) {
  * potentially indicate HTML due to entities, which need to be decoded.
  */
 function hasHTMLSyntax(string) {
-  return (
-    string.indexOf("<") !== -1 ||
-    (string.indexOf("&") !== -1 && string.indexOf(";") !== -1)
-  );
+  return string.indexOf("<") !== -1 || string.indexOf("&") !== -1;
 }
-
-const validTagName = /^[0-9a-zA-Z-]+$/;
-
-const library = {
-  isValidElement: React.isValidElement,
-  cloneElement: React.cloneElement,
-  // We need to override `createElement` because `html-react-parser` will
-  // happily call this with invalid tag names (like `b<`, for example) if there
-  // is invalid HTML syntax present, which causes an error.
-  createElement(type, props, ...children) {
-    if (!validTagName.test(type)) {
-      throw new Error("Invalid syntax.");
-    }
-    return React.createElement(type, props, ...children);
-  },
-};
 
 /**
  * A value formatter for the `format` function that renders (and escapes)
@@ -90,33 +69,32 @@ export function htmlToReact(html, placeholders, tagHandlers) {
   if (!hasHTMLSyntax(html)) {
     return html;
   }
+  const dom = htmlToDom(html);
   const options = {
-    library,
     replace(node) {
       if (node.type === "tag") {
         if (node.attribs) {
           const key = node.attribs["data-react-placeholder-key"];
           if (key) {
-            const value = placeholders[key];
-            return Array.isArray(value) ? <>{value}</> : value;
+            return placeholders[key];
           }
         }
         const tagName = node.name;
         const tagHandler = tagHandlers && tagHandlers[tagName];
         if (typeof tagHandler === "function") {
-          const props = attributesToProps(node.attribs);
+          const props = attrsToProps(node.attribs);
           if (node.children.length) {
             props.children = domToReact(node.children, options);
           }
-          return <>{tagHandler(props)}</>;
+          return tagHandler(props);
         }
       }
     },
   };
   try {
-    return htmlReactParser(html, options);
+    return domToReact(dom, options);
   } catch (err) {
-    console.error(err);
+    // Don't throw; instead return the raw HTML string.
     return html;
   }
 }

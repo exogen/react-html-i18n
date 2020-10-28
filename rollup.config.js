@@ -7,7 +7,13 @@ import pkg from "./package.json";
 
 const baseConfig = {
   input: "src/index.js",
-  external: ["react", "react-dom", "html-react-parser", "quick-lru"],
+  external: [
+    "react",
+    "react-dom",
+    "html-dom-parser",
+    "quick-lru",
+    "style-to-object",
+  ],
   output: [
     { file: pkg.main, format: "cjs" },
     { file: pkg.module, format: "es" },

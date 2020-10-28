@@ -11,3 +11,6 @@ export {
 export { MessageProvider } from "./MessageProvider";
 export { Message } from "./Message";
 export { useMessage } from "./useMessage";
+export { attrsToProps } from "./attrsToProps";
+export { htmlToDom, domToReact } from "./domToReact";
+export { htmlToReact } from "./react";
