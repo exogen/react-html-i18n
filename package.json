@@ -1,5 +1,6 @@
 {
   "name": "react-html-i18n",
+  "version": "0.3.2",
   "description": "React internationalization with ICU Message Format and HTML message support.",
   "keywords": [
     "react",
@@ -14,8 +15,8 @@
     "icu-message-syntax",
     "message-format"
   ],
-  "version": "0.3.2",
   "license": "MIT",
+  "repository": "exogen/react-html-i18n",
   "files": [
     "dist"
   ],
