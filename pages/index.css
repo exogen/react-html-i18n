@@ -13,16 +13,25 @@ html {
 
 body {
   margin: 0;
-  padding: 1rem;
+  padding: 2rem 1rem;
   font-family: Lato, Helvetica, sans-serif;
   line-height: 1.5;
   background: #e6e2da;
   color: #222;
 }
 
+a:link,
+a:visited {
+  color: #7b4c8a;
+}
+
 h1 {
   margin: 0 0 0.5rem 0;
   font-size: 1.5rem;
+}
+
+h1.title {
+  text-align: center;
 }
 
 h2 {
@@ -33,7 +42,7 @@ h2 {
 pre,
 code,
 tt {
-  font-family: 'Dank Mono', Menlo, Monaco, Consolas, monospace;
+  font-family: "Dank Mono", Menlo, Monaco, Consolas, monospace;
 }
 
 .rule {
@@ -42,7 +51,7 @@ tt {
   border-top: 2px solid #1671f0;
 }
 
-.fancy-link {
+a.fancy-link {
   padding: 0.2rem 0.4rem;
   border-radius: 2px;
   text-decoration: none;

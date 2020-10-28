@@ -37,31 +37,37 @@ function Example({ code, intro }) {
 
 export default function DemoPage() {
   return (
-    <MessageProvider>
-      <Example
-        intro={
-          <p>
-            Neat, it’s ICU Message Format with full HTML and React element
-            support.
-          </p>
-        }
-        code={`<Message
+    <main>
+      <h1 className="title">
+        <a href="https://github.com/exogen/react-html-i18n">react-html-i18n</a>
+      </h1>
+      <MessageProvider>
+        <Example
+          intro={
+            <p>
+              Neat, it’s ICU Message Format with full HTML and React element
+              support.
+            </p>
+          }
+          code={`<Message
   values={{ title: "It worked! Try editing this code." }}
-  string="<h1>{title}</h1>"
+  string="<h2>{title}</h2>"
 />`}
-      />
-      <Example
-        intro={
-          <p>Values can be React elements, even interactive ones with state!</p>
-        }
-        code={`<Message
+        />
+        <Example
+          intro={
+            <p>
+              Values can be React elements, even interactive ones with state!
+            </p>
+          }
+          code={`<Message
   values={{ button: <CounterButton /> }}
   string="Like this: {button} …or how about another? {button}"
 />`}
-      />
-      <Example
-        intro={<p>Tag replacement? You got it.</p>}
-        code={`<Message
+        />
+        <Example
+          intro={<p>Tag replacement? You got it.</p>}
+          code={`<Message
   values={{
     // Customize how tags are rendered:
     hr: () => <hr className="rule" />,
@@ -85,18 +91,18 @@ export default function DemoPage() {
     How about a <a href="{url}">dynamic link</a>?
   \`}
 />`}
-      />
-      <Example
-        intro={
-          <p>
-            Here’s an example of a complex message from the ICU docs. You can
-            define completely custom formatters, or import the built-ins defined
-            by the ICU Message Format spec, like: <code>date</code>,{" "}
-            <code>time</code>, <code>number</code>, <code>select</code>,{" "}
-            <code>plural</code>, and <code>selectordinal</code>.
-          </p>
-        }
-        code={`<Message
+        />
+        <Example
+          intro={
+            <p>
+              Here’s an example of a complex message from the ICU docs. You can
+              define completely custom formatters, or import the built-ins
+              defined by the ICU Message Format spec, like: <code>date</code>,{" "}
+              <code>time</code>, <code>number</code>, <code>select</code>,{" "}
+              <code>plural</code>, and <code>selectordinal</code>.
+            </p>
+          }
+          code={`<Message
   // Try changing these values.
   values={{
     host: "Alex",
@@ -133,7 +139,8 @@ export default function DemoPage() {
     }
   \`}
 />`}
-      />
-    </MessageProvider>
+        />
+      </MessageProvider>
+    </main>
   );
 }

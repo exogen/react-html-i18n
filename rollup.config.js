@@ -37,6 +37,12 @@ export default [
       { file: "./dist/index.cjs.js", format: "cjs" },
       { file: "./dist/index.esm.js", format: "es" },
     ],
+    plugins: [
+      replace({
+        "process.browser": JSON.stringify(false),
+      }),
+      ...baseConfig.plugins,
+    ],
   },
   {
     ...browserConfig,

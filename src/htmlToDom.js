@@ -1,18 +1,18 @@
-const fn = process.browser
-  ? require("./htmlToDom.browser").htmlToDom
-  : require("./htmlToDom.server").htmlToDom;
+const { getChildNodes } = process.browser
+  ? require("./htmlToDom.browser")
+  : require("./htmlToDom.server");
 
 const attrListProperty = process.browser ? "attributes" : "attrs";
-const textProperty = process.browser ? "data" : "value";
+const dataProperty = process.browser ? "data" : "value";
 
 function htmlToDom(html) {
-  return adaptNodes(fn(html));
+  return adaptNodes(getChildNodes(html));
 }
 
-function createAttrs(list) {
+function createAttrs(attrList) {
   let attrs = null;
-  for (let i = 0; i < list.length; i++) {
-    const attr = list[i];
+  for (let i = 0; i < attrList.length; i++) {
+    const attr = attrList[i];
     const key = `${attr.prefix || ""}${attr.name}`;
     attrs = attrs || {};
     attrs[key] = attr.value;
@@ -25,7 +25,7 @@ function adaptNodes(domNodes) {
   domNodes.forEach((domNode) => {
     switch (domNode.nodeName) {
       case "#text":
-        nodes.push({ type: "text", data: domNode[textProperty] });
+        nodes.push({ type: "text", data: domNode[dataProperty] });
         break;
       case domNode.tagName: {
         const name = domNode.tagName.toLowerCase();

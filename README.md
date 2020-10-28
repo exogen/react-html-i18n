@@ -6,13 +6,13 @@
 
 </div>
 
-- ICU message format.
+- [ICU message format](https://unicode-org.github.io/icu/userguide/format_parse/messages/).
 - Argument values can be React elements.
 - Full HTML support (including attributes).
 - Custom argument formatters.
 - Custom HTML tags and tag overrides.
 - Server-side rendering (SSR) compatible.
-- Fast and relatively lightweight!
+- Fast and [lightweight](https://bundlephobia.com/result?p=react-html-i18n)!
 
 ## Install
 

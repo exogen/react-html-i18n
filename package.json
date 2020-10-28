@@ -1,6 +1,18 @@
 {
   "name": "react-html-i18n",
-  "version": "0.3.0",
+  "description": "React internationalization with ICU Message Format and HTML message support.",
+  "keywords": [
+    "react",
+    "i18n",
+    "intl",
+    "internationalization",
+    "translation",
+    "html translations",
+    "icu",
+    "icu message syntax",
+    "message format"
+  ],
+  "version": "0.3.1",
   "license": "MIT",
   "files": [
     "dist"
@@ -15,7 +27,7 @@
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:docs": "rimraf .next docs && next build && next export -o docs && touch docs/.nojekyll",
-    "format": "prettier --write \"**/*.{js,json}\"",
+    "format": "prettier --write \"**/*.{css,js,json,md}\"",
     "perf": "yarn perf:lib && yarn perf:lib intl-messageformat-parser && yarn perf:lib messageformat-parser && yarn perf:lib format-message-parse && yarn perf:lib @ffz/icu-msgparser",
     "perf:lib": "node scripts/perf.js",
     "postbuild": "npm run size",
