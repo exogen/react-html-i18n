@@ -5,14 +5,16 @@
     "react",
     "i18n",
     "intl",
+    "react-i18n",
+    "react-intl",
     "internationalization",
     "translation",
-    "html translations",
+    "html-translations",
     "icu",
-    "icu message syntax",
-    "message format"
+    "icu-message-syntax",
+    "message-format"
   ],
-  "version": "0.3.1",
+  "version": "0.3.2",
   "license": "MIT",
   "files": [
     "dist"
