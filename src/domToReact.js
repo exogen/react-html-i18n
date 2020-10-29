@@ -1,7 +1,6 @@
 import React from "react";
 import { attrsToProps } from "./attrsToProps";
 
-const validTagName = /^[0-9a-z-]+$/i;
 const defaultOptions = {};
 
 export function domToReact(dom, options = defaultOptions) {
@@ -19,7 +18,12 @@ export function domToReact(dom, options = defaultOptions) {
           let { name, attrs, children } = node;
           const props = { key: i };
           switch (name) {
+            case "script":
+              return;
             case "style":
+              // The child of a style tag will be CSS syntax, but it's not valid
+              // for React to escape that syntax as if it were HTML. So, stick
+              // it in `dangerouslySetInnerHTML` instead of `children`.
               if (children[0]) {
                 props.dangerouslySetInnerHTML = {
                   __html: children[0].data,
@@ -28,6 +32,8 @@ export function domToReact(dom, options = defaultOptions) {
               }
               break;
             case "textarea":
+              // Convert `textarea` children to `defaultValue`, since using
+              // children is not recommended in React.
               if (children[0]) {
                 props.defaultValue = children[0].data;
                 children = [];

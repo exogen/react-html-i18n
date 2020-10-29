@@ -51,7 +51,7 @@ addHandler(
 
 addHandler(
   // BOOLEAN
-  "allowfullscreen=allowFullScreenasync,autofocus=autoFocus,autoplay=autoPlay,checked,controls,default,defer,disabled,disablepictureinpicture=disablePictureInPicture,disableremoteplayback=disableRemotePlayback,formnovalidate=formNoValidate,hidden,itemscope=itemScope,loop,multiple,muted,nomodule=noModule,novalidate=noValidate,open,playsinline=playsInline,readonly=readOnly,required,reversed,scoped,seamless,selected",
+  "allowfullscreen=allowFullScreen,async,autofocus=autoFocus,autoplay=autoPlay,checked,controls,default,defer,disabled,disablepictureinpicture=disablePictureInPicture,disableremoteplayback=disableRemotePlayback,formnovalidate=formNoValidate,hidden,itemscope=itemScope,loop,multiple,muted,nomodule=noModule,novalidate=noValidate,open,playsinline=playsInline,readonly=readOnly,required,reversed,scoped,seamless,selected",
   (props, name, value) => {
     props[name] = true;
   }
