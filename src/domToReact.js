@@ -54,5 +54,12 @@ export function domToReact(dom, options = defaultOptions) {
     }
   });
 
-  return nodes.length === 1 ? nodes[0] : nodes;
+  switch (nodes.length) {
+    case 0:
+      return null;
+    case 1:
+      return nodes[0];
+    default:
+      return nodes;
+  }
 }

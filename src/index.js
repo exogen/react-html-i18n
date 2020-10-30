@@ -8,8 +8,9 @@ export {
   formatSelect,
   formatSelectOrdinal,
 } from "./intl";
-export { MessageProvider } from "./MessageProvider";
+export { MessageProvider, MessageContext } from "./MessageProvider";
 export { Message } from "./Message";
+export { useFormatMessage } from "./useFormatMessage";
 export { useMessage } from "./useMessage";
 export { attrsToProps } from "./attrsToProps";
 export { htmlToDom } from "./htmlToDom";

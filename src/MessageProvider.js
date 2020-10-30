@@ -26,8 +26,8 @@ function parseMessage(string) {
   return ast;
 }
 
-export const Context = React.createContext();
-Context.displayName = "MessageContext";
+export const MessageContext = React.createContext();
+MessageContext.displayName = "MessageContext";
 
 const defaultFormatters = {
   date: formatDate,
@@ -41,6 +41,13 @@ const defaultFormatters = {
 export function MessageProvider({ children, locale, messages }) {
   const context = useMemo(() => {
     const formatMessage = (message, values) => {
+      if (typeof message !== "string") {
+        const { id, defaultMessage } = message;
+        message = messages[id];
+        if (message == null) {
+          message = defaultMessage;
+        }
+      }
       let placeholders;
       const formatHTML = createFormat({
         locale,
@@ -65,5 +72,9 @@ export function MessageProvider({ children, locale, messages }) {
     return { locale, messages, formatMessage };
   }, [locale, messages]);
 
-  return <Context.Provider value={context}>{children}</Context.Provider>;
+  return (
+    <MessageContext.Provider value={context}>
+      {children}
+    </MessageContext.Provider>
+  );
 }

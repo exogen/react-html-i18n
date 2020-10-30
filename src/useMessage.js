@@ -1,16 +1,6 @@
-import React, { useContext, useMemo } from "react";
-import { Context } from "./MessageProvider";
+import { useFormatMessage } from "./useFormatMessage";
 
 export function useMessage(message, values) {
-  const { formatMessage, messages } = useContext(Context);
-
-  if (typeof message !== "string") {
-    const { id, defaultMessage } = message;
-    message = id ? messages[id] : null;
-    if (message == null) {
-      message = defaultMessage;
-    }
-  }
-
+  const formatMessage = useFormatMessage();
   return formatMessage(message, values);
 }
