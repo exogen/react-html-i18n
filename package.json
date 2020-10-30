@@ -1,6 +1,6 @@
 {
   "name": "react-html-i18n",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "React internationalization with ICU Message Format and HTML message support.",
   "keywords": [
     "react",
